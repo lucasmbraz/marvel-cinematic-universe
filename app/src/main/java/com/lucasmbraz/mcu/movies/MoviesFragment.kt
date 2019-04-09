@@ -14,13 +14,14 @@ import com.lucasmbraz.mcu.R
 import com.lucasmbraz.mcu.model.Movie
 import com.lucasmbraz.mcu.moviedetails.MovieDetailsFragment
 import kotlinx.android.synthetic.main.fragment_movies.*
+import javax.inject.Inject
 
 class MoviesFragment : Fragment(), MoviesView {
 
-    private lateinit var presenter: MoviesPresenter
+    @Inject lateinit var presenter: MoviesPresenter
 
     override fun onAttach(context: Context?) {
-        presenter = DaggerMoviesComponent.builder().build().presenter()
+        DaggerMoviesComponent.builder().build().inject(this)
         super.onAttach(context)
     }
 

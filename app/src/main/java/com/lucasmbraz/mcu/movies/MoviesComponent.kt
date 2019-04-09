@@ -5,6 +5,6 @@ import dagger.Component
 @Component
 interface MoviesComponent {
 
-    fun presenter(): MoviesPresenter
+    fun inject(fragment: MoviesFragment)
 
 }
