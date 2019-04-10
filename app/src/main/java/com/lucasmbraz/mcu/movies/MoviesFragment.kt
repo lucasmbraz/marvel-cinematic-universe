@@ -9,10 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL
 import androidx.recyclerview.widget.PagerSnapHelper
+import com.lucasmbraz.mcu.App
 import com.lucasmbraz.mcu.PageIndicatorDecoration
 import com.lucasmbraz.mcu.R
 import com.lucasmbraz.mcu.model.Movie
-import com.lucasmbraz.mcu.movies.di.DaggerMoviesComponent
 import com.lucasmbraz.mcu.moviedetails.MovieDetailsFragment
 import kotlinx.android.synthetic.main.fragment_movies.*
 import javax.inject.Inject
@@ -22,7 +22,7 @@ class MoviesFragment : Fragment(), MoviesView {
     @Inject lateinit var presenter: MoviesPresenter
 
     override fun onAttach(context: Context?) {
-        DaggerMoviesComponent.builder().build().inject(this)
+        (activity?.application as App).moviesComponent.inject(this)
         super.onAttach(context)
     }
 
