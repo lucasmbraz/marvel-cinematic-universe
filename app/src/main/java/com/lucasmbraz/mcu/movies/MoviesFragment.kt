@@ -1,5 +1,6 @@
 package com.lucasmbraz.mcu.movies
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +17,12 @@ import kotlinx.android.synthetic.main.fragment_movies.*
 
 class MoviesFragment : Fragment(), MoviesView {
 
-    private val presenter: MoviesPresenter = MoviesPresenter()
+    private lateinit var presenter: MoviesPresenter
+
+    override fun onAttach(context: Context?) {
+        presenter = DaggerMoviesComponent.builder().build().presenter()
+        super.onAttach(context)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_movies, container, false)
