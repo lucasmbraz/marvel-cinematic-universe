@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.PagerSnapHelper
 import com.lucasmbraz.mcu.PageIndicatorDecoration
 import com.lucasmbraz.mcu.R
 import com.lucasmbraz.mcu.model.Movie
+import com.lucasmbraz.mcu.movies.di.DaggerMoviesComponent
 import com.lucasmbraz.mcu.moviedetails.MovieDetailsFragment
 import kotlinx.android.synthetic.main.fragment_movies.*
 import javax.inject.Inject
@@ -38,6 +39,11 @@ class MoviesFragment : Fragment(), MoviesView {
     override fun onStart() {
         super.onStart()
         presenter.start(this)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        presenter.stop()
     }
 
     override fun showMovies(movies: List<Movie>) {
