@@ -1,5 +1,6 @@
 package com.lucasmbraz.mcu.moviedetails
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,11 +8,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.lucasmbraz.mcu.R
 import com.lucasmbraz.mcu.model.Movie
+import com.lucasmbraz.mcu.movies.di.DaggerMoviesComponent
 import kotlinx.android.synthetic.main.fragment_movie_details.*
+import javax.inject.Inject
 
 class MovieDetailsFragment : Fragment(), MovieDetailsView {
 
-    private val presenter: MovieDetailsPresenter = MovieDetailsPresenter()
+    @Inject lateinit var presenter: MovieDetailsPresenter
 
     companion object {
         private const val KEY_MOVIE_ID = "movieId"
@@ -23,6 +26,11 @@ class MovieDetailsFragment : Fragment(), MovieDetailsView {
             fragment.arguments = args
             return fragment
         }
+    }
+
+    override fun onAttach(context: Context?) {
+        DaggerMoviesComponent.builder().build().inject(this)
+        super.onAttach(context)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
