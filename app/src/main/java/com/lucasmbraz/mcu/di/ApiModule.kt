@@ -1,4 +1,4 @@
-package com.lucasmbraz.mcu.movies.di
+package com.lucasmbraz.mcu.di
 
 import com.lucasmbraz.mcu.api.MoviesApi
 import dagger.Module

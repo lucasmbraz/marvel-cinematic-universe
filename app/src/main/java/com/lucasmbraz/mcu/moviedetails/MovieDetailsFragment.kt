@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.lucasmbraz.mcu.App
 import com.lucasmbraz.mcu.R
+import com.lucasmbraz.mcu.app
 import com.lucasmbraz.mcu.model.Movie
 import kotlinx.android.synthetic.main.fragment_movie_details.*
 import javax.inject.Inject
@@ -29,7 +29,7 @@ class MovieDetailsFragment : Fragment(), MovieDetailsView {
     }
 
     override fun onAttach(context: Context?) {
-        (activity?.application as App).moviesComponent.inject(this)
+        app?.component?.inject(this)
         super.onAttach(context)
     }
 

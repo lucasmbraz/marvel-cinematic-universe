@@ -1,4 +1,4 @@
-package com.lucasmbraz.mcu.movies.di
+package com.lucasmbraz.mcu.di
 
 import com.lucasmbraz.mcu.moviedetails.MovieDetailsFragment
 import com.lucasmbraz.mcu.movies.MoviesFragment
@@ -7,7 +7,7 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(modules = [ApiModule::class])
-interface MoviesComponent {
+interface AppComponent {
     fun inject(fragment: MoviesFragment)
     fun inject(fragment: MovieDetailsFragment)
 }
