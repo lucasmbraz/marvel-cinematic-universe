@@ -10,7 +10,7 @@ class MainActivity : AppCompatActivity() {
 
     @Inject lateinit var pageChanger: PageChanger
 
-    private val component by lazy {
+    val component by lazy {
         app.component.plus(PageChangerModule(supportFragmentManager))
     }
 

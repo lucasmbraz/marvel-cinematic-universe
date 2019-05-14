@@ -9,20 +9,23 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL
 import androidx.recyclerview.widget.PagerSnapHelper
+import com.lucasmbraz.mcu.MainActivity
+import com.lucasmbraz.mcu.PageChanger
 import com.lucasmbraz.mcu.PageIndicatorDecoration
 import com.lucasmbraz.mcu.R
-import com.lucasmbraz.mcu.app
 import com.lucasmbraz.mcu.model.Movie
-import com.lucasmbraz.mcu.moviedetails.MovieDetailsFragment
 import kotlinx.android.synthetic.main.fragment_movies.*
 import javax.inject.Inject
 
 class MoviesFragment : Fragment(), MoviesView {
 
+    private val component by lazy { (activity as MainActivity).component }
+
     @Inject lateinit var presenter: MoviesPresenter
+    @Inject lateinit var pageChanger: PageChanger
 
     override fun onAttach(context: Context?) {
-        app?.component?.inject(this)
+        component.inject(this)
         super.onAttach(context)
     }
 
@@ -47,17 +50,9 @@ class MoviesFragment : Fragment(), MoviesView {
     }
 
     override fun showMovies(movies: List<Movie>) {
-        recyclerView.adapter = MoviesAdapter(movies, ::navigateToMovieDetails)
+        recyclerView.adapter = MoviesAdapter(movies, pageChanger::showMovieDetailsFragment)
         if (recyclerView.itemDecorationCount == 0) {
             recyclerView.addItemDecoration(PageIndicatorDecoration())
         }
-    }
-
-    private fun navigateToMovieDetails(movie: Movie) {
-        val fragment = MovieDetailsFragment.newInstance(movieId = movie.id)
-        fragmentManager?.beginTransaction()
-            ?.addToBackStack("MovieDetais")
-            ?.replace(R.id.content, fragment)
-            ?.commit()
     }
 }
