@@ -8,7 +8,7 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = [ApiModule::class])
 interface AppComponent {
-    fun plus(pageChangerModule: PageChangerModule): MainActivityComponent
+    fun plus(pageChangerModule: PageChangerModule): ActivityComponent
 
     fun inject(fragment: MoviesFragment)
     fun inject(fragment: MovieDetailsFragment)

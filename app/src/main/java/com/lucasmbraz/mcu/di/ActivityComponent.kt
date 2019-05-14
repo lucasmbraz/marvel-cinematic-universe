@@ -4,6 +4,6 @@ import com.lucasmbraz.mcu.MainActivity
 import dagger.Subcomponent
 
 @Subcomponent(modules = [PageChangerModule::class])
-interface MainActivityComponent {
+interface ActivityComponent {
     fun inject(activity: MainActivity)
 }
